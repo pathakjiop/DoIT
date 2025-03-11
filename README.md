@@ -74,13 +74,3 @@ npm run preview
 🚀 Integration with third-party calendars  
 🚀 Drag-and-drop functionality for Kanban board tasks  
 🚀 Reminders and notifications for upcoming deadlines  
-
----
-
-## Contributing
-Contributions are welcome! Feel free to submit issues or pull requests to improve the project.
-
----
-
-## License
-This project is licensed under the **MIT License**.
