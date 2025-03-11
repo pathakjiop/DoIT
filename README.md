@@ -1,12 +1,86 @@
-# React + Vite
+# Dolt - Task Management Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dolt is a sleek and efficient task management application built using **Vite + React**. It offers an intuitive UI with powerful features to help users organize their tasks efficiently.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ **Task Management System**  
+- Add tasks with customizable **priorities** (Low, Medium, High).  
+- Include **dates** and **subtasks** for enhanced organization.  
 
-## Expanding the ESLint configuration
+✅ **Kanban Board Layout**  
+- Organize tasks into clear categories: **To Do**, **In Progress**, and **Done**.  
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+✅ **List Management**  
+- Create custom lists like **Work**, **Personal**, or any other category to separate different types of tasks.  
+
+✅ **Dark & Light Mode Support**  
+- Easily switch between light and dark themes for better user comfort.  
+
+✅ **Progress Tracking**  
+- Visual progress tracker that shows the percentage of completed tasks across different priority levels.  
+
+---
+
+## Tech Stack
+- **Vite** (for fast development and optimized builds)  
+- **React.js** (for dynamic UI)  
+- **Tailwind CSS** (for modern and responsive design)  
+
+---
+
+## Installation and Setup
+Follow these steps to run the project locally:
+
+1. **Clone the Repository**
+```bash
+git clone https://github.com/pathakjiop/DoIt
+cd dolt-task-manager
+```
+
+2. **Install Dependencies**
+```bash
+npm install
+```
+
+3. **Start the Development Server**
+```bash
+npm run dev
+```
+
+4. **Build for Production**
+```bash
+npm run build
+```
+
+5. **Preview the Production Build**
+```bash
+npm run preview
+```
+
+---
+
+## Usage
+- Click the **"Add Task"** button to create a new task.
+- Assign priorities, add due dates, and include subtasks to organize efficiently.
+- Track progress in the visual task tracker.
+- Switch between **dark mode** and **light mode** using the toggle for optimal viewing.
+
+---
+
+---
+
+## Future Enhancements
+🚀 Integration with third-party calendars  
+🚀 Drag-and-drop functionality for Kanban board tasks  
+🚀 Reminders and notifications for upcoming deadlines  
+
+---
+
+## Contributing
+Contributions are welcome! Feel free to submit issues or pull requests to improve the project.
+
+---
+
+## License
+This project is licensed under the **MIT License**.
