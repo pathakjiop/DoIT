@@ -686,14 +686,14 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className={`flex flex-col md:flex-row h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+    <div className={`flex flex-col md:flex-row overflow-hidden h-screen w-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'} `}>
       {/* Sidebar */}
       <div className={`${
         mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       } md:translate-x-0 fixed md:static inset-y-0 left-0 z-50 w-64 transition-transform duration-300 ease-in-out ${
         darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100'
       } border-r`}>
-        <div className={`p-4 flex items-center ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+        <div className={`p-2 flex items-center ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
           <div className="text-green-600 font-bold text-xl flex items-center">
             <span className="text-green-600 mr-1">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -708,10 +708,10 @@ function App() {
           </div>
         </div>
 
-        <div className="p-4">
+        <div className="p-1">
           {/* Default Lists */}
           
-          <div className={`text-xs uppercase ${darkMode ? 'text-gray-400' : 'text-gray-500'} font-semibold pl-2 mb-2`}>My Tasks</div>
+          <div className={`text-xs uppercase ${darkMode ? 'text-gray-400' : 'text-gray-500'} font-semibold pl-2 mb-1`}>My Tasks</div>
           <div className="space-y-1">
             {[
               { name: "All Tasks", icon: <List className="w-5 h-5 mr-3" /> },
@@ -736,8 +736,8 @@ function App() {
           </div>
 
           {/* Default List */}
-          <div className="mt-4">
-            <div className={`text-xs uppercase ${darkMode ? 'text-gray-400' : 'text-gray-500'} font-semibold pl-2 mb-2`}>Default List</div>
+          <div className="mt-">
+            <div className={`text-xs uppercase ${darkMode ? 'text-gray-400' : 'text-gray-500'} font-semibold pl-2 mb-1`}>Default List</div>
             <div className="space-y-1">
               <div
                 className={`flex items-center px-3 py-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'} rounded-md cursor-pointer ${
@@ -755,8 +755,8 @@ function App() {
 
           {/* Custom Lists */}
           {customLists.length > 0 && (
-            <div className="mt-4">
-              <div className={`text-xs uppercase ${darkMode ? 'text-gray-400' : 'text-gray-500'} font-semibold pl-2 mb-2`}>My Lists</div>
+            <div className="mt-2">
+              <div className={`text-xs uppercase ${darkMode ? 'text-gray-400' : 'text-gray-500'} font-semibold pl-2 mb-1`}>My Lists</div>
               <div className="space-y-1">
                 {customLists.map((list) => (
                   <div
@@ -789,8 +789,8 @@ function App() {
 
 
           {/* Today Tasks Dashboard */}
-          <div className={`mt-3 p-3 ${darkMode ? 'bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700' : 'bg-gradient-to-br from-white to-gray-10 border-gray-200'} rounded-2xl shadow-lg border`}>
-            <div className="flex items-center justify-between mb-4">
+          <div className={`mt-2 p-3 ${darkMode ? 'bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700' : 'bg-gradient-to-br from-white to-gray-10 border-gray-200'} rounded-2xl shadow-lg border`}>
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <Clock className={`h-4 w-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} />
                 <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Today's Tasks</span>
