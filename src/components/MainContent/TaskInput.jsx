@@ -16,11 +16,8 @@ const TaskInput = () => {
   const [newTaskTag, setNewTaskTag] = useState("")
   const [showTagInput, setShowTagInput] = useState(false)
   const [newTaskRecurring, setNewTaskRecurring] = useState(null)
-  const [showRecurringOptions, setShowRecurringOptions] = useState(false)
   const [newTaskReminder, setNewTaskReminder] = useState(null)
-  const [showReminderOptions, setShowReminderOptions] = useState(false)
   const [newTaskDependsOn, setNewTaskDependsOn] = useState(null)
-  const [showDependencyOptions, setShowDependencyOptions] = useState(false)
 
   // State for subtasks
   const [newSubtasks, setNewSubtasks] = useState([])

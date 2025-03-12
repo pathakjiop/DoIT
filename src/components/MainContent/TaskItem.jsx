@@ -105,13 +105,6 @@ const TaskItem = ({
                 </div>
               )}
               
-              {/* Tags */}
-              {task.tags && task.tags.map(tag => (
-                <div key={tag} className={`text-xs ${darkMode ? 'bg-purple-900 text-purple-200' : 'bg-purple-50 text-purple-700'} px-2 py-0.5 rounded-full`}>
-                  {tag}
-                </div>
-              ))}
-              
               {/* In Progress badge */}
               {task.inProgress && !task.completed && (
                 <div className={`text-xs ${darkMode ? 'bg-blue-900 text-blue-200' : 'bg-blue-50 text-blue-700'} px-2 py-0.5 rounded-full flex items-center`}>
