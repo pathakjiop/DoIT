@@ -24,7 +24,7 @@ const MainContent = ({ setShowCalendar, mobileMenuOpen, setMobileMenuOpen }) => 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       {/* Header */}
-      <header className={`h-16 ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-100 bg-white'} border-b flex flex-wrap md:flex-nowrap items-center justify-between px-4 py-2`}>
+      <header className={`p-3 ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-100 bg-white'} border-b flex flex-wrap md:flex-nowrap items-center justify-between px-4 py-2`}>
         {/* Mobile Menu Button */}
         <button 
           className="md:hidden p-2 rounded-md text-gray-500 hover:text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"

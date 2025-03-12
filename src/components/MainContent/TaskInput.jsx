@@ -79,8 +79,6 @@ const TaskInput = () => {
         setNewTaskList("default")
         setNewTaskTags([])
         setNewSubtasks([])
-        setNewTaskRecurring(null)
-        setNewTaskReminder(null)
         setNewTaskDependsOn(null)
         setShowDatePicker(false)
         setShowSubtaskInput(false)

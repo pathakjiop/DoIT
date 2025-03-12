@@ -8,7 +8,9 @@ const KanbanCard = ({ task, onToggleComplete, onToggleImportant, onDelete, onMov
   
   // Format the date to be more readable
   const formatDate = (dateString) => {
-    if (!dateString) return ""
+    if (!dateString) {
+      return ""
+    }
     
     const taskDate = new Date(dateString)
     const today = new Date()
@@ -20,8 +22,12 @@ const KanbanCard = ({ task, onToggleComplete, onToggleImportant, onDelete, onMov
     tomorrow.setHours(0, 0, 0, 0)
     taskDate.setHours(0, 0, 0, 0)
     
-    if (taskDate.getTime() === today.getTime()) return "Today"
-    if (taskDate.getTime() === tomorrow.getTime()) return "Tomorrow"
+    if (taskDate.getTime() === today.getTime()) {
+      return "Today"
+    }
+    if (taskDate.getTime() === tomorrow.getTime()) {
+      return "Tomorrow"
+    }
     
     // Otherwise return formatted date
     const options = { month: "short", day: "numeric" }
