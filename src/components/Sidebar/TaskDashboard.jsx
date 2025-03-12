@@ -61,10 +61,6 @@ const TaskDashboard = () => {
           <Clock className={`h-4 w-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} />
           <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Today's Tasks</span>
         </div>
-        <button>
-          <div className={`w-6 h-6 rounded-full ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'} flex items-center justify-center text-xs font-bold cursor-pointer transition-colors`}>
-          </div>
-        </button>
       </div>
       <div className={`text-3xl font-extrabold ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>{pendingTasksCount}</div>
 
@@ -77,7 +73,7 @@ const TaskDashboard = () => {
                   priority === "high" 
                     ? darkMode ? "bg-red-900" : "bg-red-100" 
                     : priority === "medium" 
-                      ? darkMode ? "bg-orange-900" : "bg-orange-100" 
+                      ? darkMode ? "bg-yellow-900" : "bg-yellow-100" 
                       : darkMode ? "bg-emerald-900" : "bg-emerald-100"
                 }`}
               >
@@ -96,7 +92,7 @@ const TaskDashboard = () => {
                       priority === "high"
                         ? "text-red-500"
                         : priority === "medium"
-                          ? "text-orange-500"
+                          ? "text-yellow-500"
                           : "text-emerald-500"
                     } stroke-current transition-all duration-1000 ease-in-out`}
                     strokeWidth="6"
@@ -116,7 +112,7 @@ const TaskDashboard = () => {
                       priority === "high"
                         ? "text-red-500"
                         : priority === "medium"
-                          ? "text-orange-500"
+                          ? "text-yellow-500"
                           : "text-emerald-500"
                     }`}
                   >
@@ -130,7 +126,7 @@ const TaskDashboard = () => {
                     priority === "high"
                       ? "bg-red-500"
                       : priority === "medium"
-                        ? "bg-orange-500"
+                        ? "bg-yellow-500"
                         : "bg-emerald-500"
                   }`}
                 ></div>
@@ -143,7 +139,7 @@ const TaskDashboard = () => {
         </div>
       </div>
 
-      <div className="mt-6 space-y-3">
+      <div className="mt-5 space-y-3">
         <div className={`flex justify-between items-center text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
           <span>Overall Completion</span>
           <span>{completedPercentage}%</span>

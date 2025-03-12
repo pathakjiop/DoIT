@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { List, Calendar, Star, Plus, X, Trash } from 'lucide-react'
-
 import { useTheme } from "../contexts/ThemeContext"
 import { useTasks } from "../contexts/TaskContext"
 import TaskDashboard from "./TaskDashboard"
@@ -50,7 +49,7 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
         <div className={`p-3 flex items-center justify-between ${darkMode ? 'border-gray-700' : 'border-gray-100'} border-b`}>
           <div className="text-green-600 font-bold text-lg flex items-center">
             <span className="text-green-600 mr-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-book-open-check"><path d="M12 21V7"/><path d="m16 12 2 2 4-4"/><path d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-laptop-minimal-check"><path d="M2 20h20"/><path d="m9 10 2 2 4-4"/><rect x="3" y="4" width="18" height="12" rx="2"/></svg>
             </span>
           Taskly
           </div>
@@ -71,7 +70,6 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
               { name: "All Tasks", icon: <List className="w-4 h-4 mr-2" /> },
               { name: "Today", icon: <Calendar className="w-4 h-4 mr-2" /> },
               { name: "Important", icon: <Star className="w-4 h-4 mr-2" /> },
-              { name: "Planned", icon: <Calendar className="w-4 h-4 mr-2" /> },
             ].map((item) => (
               <div
                 key={item.name}

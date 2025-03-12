@@ -121,7 +121,7 @@ const TaskInput = () => {
                 <button
                   className={`px-2 py-1 rounded-md text-xs font-medium ${
                     newTaskPriority === "medium"
-                      ? darkMode ? "bg-orange-900 text-orange-200 border-orange-700" : "bg-orange-100 text-orange-800 border-orange-300"
+                      ? darkMode ? "bg-yellow-900 text-yellow-200 border-yellow-700" : "bg-yellow-100 text-yellow-800 border-yellow-300"
                       : darkMode ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-600"
                   } border`}
                   onClick={() => setNewTaskPriority("medium")}
