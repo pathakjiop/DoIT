@@ -53,20 +53,7 @@ const TaskItem = ({
       ? "bg-emerald-900 text-emerald-200 border-emerald-700" 
       : "bg-emerald-100 text-emerald-800 border-emerald-300",
   }
-
-  // Get dependency task name if exists
-  const getDependencyName = () => {
-    if (!task.dependsOn) return null
-    const dependencyTask = allTasks.find(t => t.id === task.dependsOn)
-    return dependencyTask ? dependencyTask.text : "Unknown task"
-  }
-
-  // Format recurring type for display
-  const getRecurringText = () => {
-    if (!task.recurring) return null
-    return `Repeats ${task.recurring.type}`
-  }
-
+  
   // Check if task has subtasks and if all are completed
   const hasSubtasks = task.subtasks && task.subtasks.length > 0
   const allSubtasksCompleted = hasSubtasks && 
