@@ -30,6 +30,15 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
     setNewListName("")
   }
 
+  // Handle sidebar item click
+  const handleSidebarItemClick = (name) => {
+    setActiveSidebar(name)
+    // Close mobile menu when an item is selected
+    if (window.innerWidth < 768) { // md breakpoint in Tailwind
+      setMobileMenuOpen(false)
+    }
+  }
+
   return (
     <>
       <div className={`${
@@ -37,7 +46,7 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
       } md:translate-x-0 fixed md:static inset-y-0 left-0 z-50 w-64 transition-transform duration-300 ease-in-out ${
         darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100'
       } border-r`}>
-        <div className={`p-2 flex items-center ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
+        <div className={`p-2 flex items-center justify-between ${darkMode ? 'border-gray-700' : 'border-gray-100'}`}>
           <div className="text-green-600 font-bold text-xl flex items-center">
             <span className="text-green-600 mr-1">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,6 +59,13 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
             </span>
             Dolt
           </div>
+          {/* Close button for mobile view */}
+          <button 
+            className="md:hidden text-gray-500"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
         <div className="p-1">
@@ -69,7 +85,7 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                     ? darkMode ? "bg-green-900" : "bg-green-50" 
                     : ""
                 }`}
-                onClick={() => setActiveSidebar(item.name)}
+                onClick={() => handleSidebarItemClick(item.name)}
               >
                 {item.icon}
                 <span>{item.name}</span>
@@ -78,7 +94,7 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
           </div>
 
           {/* Default List */}
-          <div className="mt-">
+          <div className="mt-2">
             <div className={`text-xs uppercase ${darkMode ? 'text-gray-400' : 'text-gray-500'} font-semibold pl-2 mb-1`}>Default List</div>
             <div className="space-y-1">
               <div
@@ -87,7 +103,7 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                     ? darkMode ? "bg-green-900" : "bg-green-50" 
                     : ""
                 }`}
-                onClick={() => setActiveSidebar("Default")}
+                onClick={() => handleSidebarItemClick("Default")}
               >
                 <List className="w-5 h-5 mr-3" />
                 <span>{defaultList.name}</span>
@@ -108,7 +124,7 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                         ? darkMode ? "bg-green-900" : "bg-green-50" 
                         : ""
                     }`}
-                    onClick={() => setActiveSidebar(list.name)}
+                    onClick={() => handleSidebarItemClick(list.name)}
                   >
                     <div className="flex items-center">
                       <List className="w-5 h-5 mr-3" />
@@ -131,9 +147,6 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
 
           {/* Today Tasks Dashboard */}
           <TaskDashboard />
-
-
-
         </div>
       </div>
 
