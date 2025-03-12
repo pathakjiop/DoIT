@@ -23,7 +23,9 @@ const Sidebar = ({ mobileMenuOpen, setMobileMenuOpen }) => {
   // Handle cancel/close for Add List
   const cancelAddList = (e) => {
     // Stop event propagation to prevent triggering other click handlers
-    if (e) e.stopPropagation()
+    if (e) {
+      e.stopPropagation()
+    }
     setShowNewListInput(false)
     setNewListName("")
   }

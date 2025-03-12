@@ -194,7 +194,9 @@ export const TaskProvider = ({ children }) => {
 
   // Format date for display in Planned view
   const formatDateForDisplay = (dateString) => {
-    if (!dateString) return ""
+    if (!dateString) {
+      return ""
+    }
     
     const taskDate = new Date(dateString)
     const today = new Date()
@@ -295,7 +297,9 @@ export const TaskProvider = ({ children }) => {
     const dependentTasks = tasks.filter(task => task.dependsOn === id)
     if (dependentTasks.length > 0) {
       const confirmDelete = window.confirm("This task has dependent tasks. Deleting it will remove the dependency. Continue?")
-      if (!confirmDelete) return
+      if (!confirmDelete) {
+        return
+      }
       
       // Remove the dependency from dependent tasks
       setTasks(tasks.map(task => 
@@ -381,17 +385,23 @@ export const TaskProvider = ({ children }) => {
 
   // Filter tasks by date range
   const filterTasksByDateRange = (tasksToFilter, start, end) => {
-    if (!start || !end) return tasksToFilter
+    if (!start || !end) {
+      return tasksToFilter
+    }
 
     return tasksToFilter.filter((task) => {
-      if (!task.date) return false
+      if (!task.date) {
+        return false
+      }
       return task.date >= formatDate(start) && task.date <= formatDate(end)
     })
   }
 
   // Format date
   const formatDate = (date) => {
-    if (!date) return ""
+    if (!date) {
+      return ""
+    }
     return date.toISOString().split("T")[0]
   }
 
