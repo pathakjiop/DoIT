@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Calendar, CheckSquare, Plus, X } from 'lucide-react'
 import { useTheme } from "../contexts/ThemeContext"
 import { useTasks } from "../contexts/TaskContext"
+import { format } from 'date-fns'
 
 const TaskInput = () => {
   const { darkMode } = useTheme()
@@ -18,6 +19,9 @@ const TaskInput = () => {
   const [newTaskRecurring, setNewTaskRecurring] = useState(null)
   const [newTaskReminder, setNewTaskReminder] = useState(null)
   const [newTaskDependsOn, setNewTaskDependsOn] = useState(null)
+  const [showRecurringOptions, setShowRecurringOptions] = useState(false)
+  const [showReminderOptions, setShowReminderOptions] = useState(false)
+  const [showDependencyOptions, setShowDependencyOptions] = useState(false)
 
   // State for subtasks
   const [newSubtasks, setNewSubtasks] = useState([])
@@ -26,6 +30,7 @@ const TaskInput = () => {
 
   // State for task date picker
   const [showDatePicker, setShowDatePicker] = useState(false)
+  const [selectedDate, setSelectedDate] = useState(new Date())
 
   // Add new subtask to the list of new subtasks
   const addNewSubtask = () => {
@@ -46,6 +51,73 @@ const TaskInput = () => {
       setNewTaskTags([...newTaskTags, newTaskTag.trim()])
       setNewTaskTag("")
     }
+  }
+
+  // Date picker functions
+  const handleDateSelection = (date) => {
+    setSelectedDate(date)
+    setNewTaskDate(format(date, 'yyyy-MM-dd'))
+  }
+
+  const generateCalendarDays = () => {
+    const firstDayOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1)
+    const startingDayOfWeek = firstDayOfMonth.getDay()
+    const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate()
+    
+    const days = []
+    
+    // Add empty cells for days before the first of the month
+    for (let i = 0; i < startingDayOfWeek; i++) {
+      days.push(<div key={`empty-${i}`} className="h-6 w-6"></div>)
+    }
+    
+    // Get today's date for comparison
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    
+    // Add the days of the month
+    for (let i = 1; i <= daysInMonth; i++) {
+      const date = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), i)
+      date.setHours(0, 0, 0, 0)
+      
+      const isSelected = selectedDate && 
+        date.getDate() === selectedDate.getDate() && 
+        date.getMonth() === selectedDate.getMonth() && 
+        date.getFullYear() === selectedDate.getFullYear()
+      
+      const isToday = 
+        date.getDate() === today.getDate() && 
+        date.getMonth() === today.getMonth() && 
+        date.getFullYear() === today.getFullYear()
+      
+      days.push(
+        <button
+          key={i}
+          onClick={() => handleDateSelection(date)}
+          className={`h-6 w-6 rounded-full flex items-center justify-center text-xs
+            ${isSelected 
+              ? 'bg-blue-500 text-white' 
+              : isToday
+                ? darkMode 
+                  ? 'border border-gray-400 text-gray-200' 
+                  : 'border border-gray-400 text-gray-800'
+                : darkMode 
+                  ? 'hover:bg-gray-700 text-gray-200' 
+                  : 'hover:bg-gray-200 text-gray-800'
+            }`}
+        >
+          {i}
+        </button>
+      )
+    }
+    
+    return days
+  }
+
+  const changeMonth = (increment) => {
+    const newDate = new Date(selectedDate)
+    newDate.setMonth(selectedDate.getMonth() + increment)
+    setSelectedDate(newDate)
   }
 
   // Add new task
@@ -173,19 +245,71 @@ const TaskInput = () => {
               <CheckSquare className="w-4 h-4 mr-1" />
               {showSubtaskInput ? "Hide subtasks" : "Add subtasks"}
             </button>
+
+           
           </div>
 
           {/* Date Picker */}
           {showDatePicker && (
-            <div className="flex items-center mt-2">
-              <label className={`mr-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'} text-sm`}>Due date:</label>
-              <input
-                type="date"
-                value={newTaskDate}
-                onChange={(e) => setNewTaskDate(e.target.value)}
-                min={today}
-                className={`border ${darkMode ? 'bg-gray-700 text-gray-200 border-gray-600' : 'bg-white text-gray-800 border-gray-200'} rounded-md px-2 py-1 text-sm`}
-              />
+            <div className={`border ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'} rounded-md p-2 max-w-xs`}>
+              <div className="mb-1 flex justify-between items-center">
+                <button 
+                  onClick={() => changeMonth(-1)}
+                  className={`text-xs ${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}
+                >
+                  &lt;
+                </button>
+                <div className={`text-xs font-medium text-center ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                  {format(selectedDate, 'MMMM yyyy')}
+                </div>
+                <button 
+                  onClick={() => changeMonth(1)}
+                  className={`text-xs ${darkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}
+                >
+                  &gt;
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-7 gap-0.5 mb-1">
+                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
+                  <div key={day} className={`h-5 w-5 flex items-center justify-center text-xs font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    {day}
+                  </div>
+                ))}
+              </div>
+              
+              <div className="grid grid-cols-7 gap-0.5 mb-1">
+                {generateCalendarDays()}
+              </div>
+
+              <div className="flex items-center justify-between mt-1">
+                <div className="text-xs truncate">
+                  <span className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {format(selectedDate, 'MMM d, yyyy')}
+                  </span>
+                </div>
+                
+                <div className="flex space-x-1">
+                  <button
+                    className={`text-xs px-1.5 py-0.5 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' : 'bg-gray-200 hover:bg-gray-300 text-gray-700'}`}
+                    onClick={() => {
+                      const today = new Date()
+                      setSelectedDate(today)
+                      setNewTaskDate(format(today, 'yyyy-MM-dd'))
+                    }}
+                  >
+                    Today
+                  </button>
+                  <button
+                    className={`text-xs px-1.5 py-0.5 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' : 'bg-gray-200 hover:bg-gray-300 text-gray-700'}`}
+                    onClick={() => {
+                      setNewTaskDate("")
+                    }}
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
             </div>
           )}
           
@@ -223,44 +347,6 @@ const TaskInput = () => {
                 <button 
                   className="ml-2 p-1 text-green-600"
                   onClick={addNewSubtask}
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          )}
-          
-          {/* Tags Input */}
-          {showTagInput && (
-            <div className={`border ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'} rounded-md p-3`}>
-              <h3 className={`text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Tags</h3>
-              {newTaskTags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {newTaskTags.map(tag => (
-                    <div key={tag} className={`${darkMode ? 'bg-purple-900 text-purple-200' : 'bg-purple-100 text-purple-800'} px-2 py-1 rounded-full text-xs flex items-center`}>
-                      {tag}
-                      <button 
-                        className={`ml-1 ${darkMode ? 'text-purple-300 hover:text-purple-100' : 'text-purple-800 hover:text-purple-900'}`}
-                        onClick={() => setNewTaskTags(newTaskTags.filter(t => t !== tag))}
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  value={newTaskTag}
-                  onChange={(e) => setNewTaskTag(e.target.value)}
-                  placeholder="Add a tag"
-                  className={`flex-1 border-b ${darkMode ? 'border-gray-700 bg-gray-800 text-gray-200' : 'border-gray-200 bg-white text-gray-800'} outline-none text-sm py-1`}
-                  onKeyPress={(e) => e.key === "Enter" && addNewTag()}
-                />
-                <button 
-                  className="ml-2 p-1 text-green-600"
-                  onClick={addNewTag}
                 >
                   <Plus className="w-4 h-4" />
                 </button>
