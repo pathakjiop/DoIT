@@ -36,7 +36,7 @@ Follow these steps to run the project locally:
 1. **Clone the Repository**
 ```bash
 git clone https://github.com/pathakjiop/Taskly
-cd dolt-task-manager
+cd Taskly
 ```
 
 2. **Install Dependencies**
