@@ -9,7 +9,8 @@ Dolt is a sleek and efficient task management application built using **Vite + R
 - Include **dates** and **subtasks** for enhanced organization.  
 
 ✅ **Kanban Board Layout**  
-- Organize tasks into clear categories: **To Do**, **In Progress**, and **Done**.  
+- Organize tasks into clear categories: **To Do**, **In Progress**, and **Done**.
+- With Drag and Drop
 
 ✅ **List Management**  
 - Create custom lists like **Work**, **Personal**, or any other category to separate different types of tasks.  
