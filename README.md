@@ -68,9 +68,4 @@ npm run preview
 
 ---
 
----
 
-## Future Enhancements
-🚀 Integration with third-party calendars  
-🚀 Drag-and-drop functionality for Kanban board tasks  
-🚀 Reminders and notifications for upcoming deadlines  
