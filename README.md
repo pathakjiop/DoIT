@@ -1,4 +1,4 @@
-# Dolt - Task Management Application
+# Taskly - Task Management Web Application
 
 Dolt is a sleek and efficient task management application built using **Vite + React**. It offers an intuitive UI with powerful features to help users organize their tasks efficiently.
 
